@@ -57,11 +57,15 @@
                 @endforeach    
         </tbody>
      </table>
+          <div class="mt-3 mb-3 d-flex justify-content-center">
+            {{ $lessons->links() }}
+        </div>
      @elseif(isset($courseId))
         <h3 class="mt-4 bg-dark text-white p-2">No lessons found for Course ID : {{ $courseId }} </h3>
         
     </div>
 @endif
+
     @if (isset($courseId))
         
     <div>

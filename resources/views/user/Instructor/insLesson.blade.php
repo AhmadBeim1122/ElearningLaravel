@@ -50,6 +50,9 @@
     @else
         <h3 class="mt-4 bg-dark text-white p-2">No lessons found for this course.</h3>
     @endif
+     <div class="mt-3 mb-3 d-flex justify-content-center">
+        {{ $lessons->links() }}
+    </div>
 </div>
 @endsection
 

@@ -78,7 +78,7 @@ class FeedbackController extends Controller
      */
     public function show(string $id)
     {
-        $feedback = feedback::where('user_id', $id)->get();
+        $feedback = feedback::where('user_id', $id)->paginate(7);
         return view('user.feedback', compact('feedback'));
     }
 

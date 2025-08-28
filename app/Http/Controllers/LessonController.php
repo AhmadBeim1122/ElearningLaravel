@@ -17,7 +17,7 @@ class LessonController extends Controller
     {
         $courseId = $request->input('checkid');
 
-        $lessons = Lesson::where('course_id', $courseId)->with('course')->get();
+        $lessons = Lesson::where('course_id', $courseId)->with('course')->paginate(10);
         $course_name = Course::where('id', $courseId)->value('course_name');
 
     // return $lessons;

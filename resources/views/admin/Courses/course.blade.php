@@ -45,6 +45,9 @@
     @endforeach
              </tbody>
      </table>
+          <div class="mt-3 mb-3 d-flex justify-content-center">
+            {{ $courses->links() }}
+        </div>
 </div>
 
 

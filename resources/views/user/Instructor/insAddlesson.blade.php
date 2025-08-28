@@ -154,7 +154,7 @@
         instantUpload: false,  // 🚨 ye important hai
         storeAsFile: true,     // 🚨 file ko form ke saath bhejega
         acceptedFileTypes: ['video/mp4', 'video/mkv', 'video/avi', 'video/mov'],
-        maxFileSize: '100MB',
+        maxFileSize: '1000MB',
     });
 </script>
 

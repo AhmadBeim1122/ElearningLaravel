@@ -44,7 +44,7 @@ class InstructorController extends Controller
      */
     public function show(string $id)
     {
-        $courses = Course::where('Ins_id',$id)->get();
+        $courses = Course::where('Ins_id',$id)->paginate(10);
         // Sirf specific keys remove karna
         session()->forget(['id', 'name']);
         
@@ -56,7 +56,7 @@ class InstructorController extends Controller
      */
     public function edit(string $id)
     {
-        $lessons = Lesson::where('course_id', $id)->with('course')->get();
+        $lessons = Lesson::where('course_id', $id)->with('course')->paginate(10);
 
         $course = Course::find($id);
 

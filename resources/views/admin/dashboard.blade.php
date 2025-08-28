@@ -65,7 +65,7 @@
                             <h4 class="card-title">
                                 {{ $enrolls }}
                             </h4>
-                            <a href="#" class="btn text-white">View</a>
+                            <a href="{{ route('All.Enroll') }}" class="btn text-white">View</a>
                         </div>
                         </div>
                     </div>

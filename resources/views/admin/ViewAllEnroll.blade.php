@@ -1,7 +1,7 @@
 @extends('admin.adminlayout')
 
 @section('content')
-<div class="container mt-4 pt-4">
+<div class="container mt-4 pt-4 ml-1">
     
     <!-- Courses List -->
     <div class="card shadow-sm">
@@ -43,6 +43,9 @@
                     @endforelse
                 </tbody>
             </table>
+            <div class="mt-3 mb-3 d-flex justify-content-center">
+                {{ $courses->links() }}
+            </div>
         </div>
     </div>
 </div>

@@ -108,11 +108,7 @@ Route::middleware('isValidUploader')->group(function () {
 
         Route::delete('lesson/delete/{id}','destroy')->name('lesson.destroy');
 
-    });
-    
-    
-    
-    
+    });  
     
 });
 

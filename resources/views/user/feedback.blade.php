@@ -1,5 +1,5 @@
 @extends('user.Userlayout')
-
+ 
 @section('content')
 
     <!-- Create Button -->
@@ -86,6 +86,9 @@
             @endforeach
         </tbody>
     </table>
+    <div class="mt-3 mb-3 d-flex justify-content-center">
+        {{ $feedback->links() }}
+    </div>
 </div>
 
 

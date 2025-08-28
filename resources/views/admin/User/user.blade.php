@@ -44,24 +44,11 @@
             </tr>
             @endforeach
         </tbody>
+        
      </table>
-     <?php //else{
-        //echo "<div class='alert alert-danger'>0 Result!!!</div>";
-     //} 
-     
-    //  delete row from student fields
-
-    // if(isset($_REQUEST['delete'])){
-    //     $sql = "DELETE from student where stu_id = {$_REQUEST['id']}";
-    //     if($conn->query($sql)==TRUE){
-    //         echo '<meta http-equiv="refresh" content="0;URL=?deleted" />';
-    //     }
-    //     else{
-    //         echo "Data cannot be deletd.";
-    //     }
-    // }
-     
-     ?>
+     <div class="mt-3 mb-3 d-flex justify-content-center">
+        {{ $users->links() }}
+    </div>
 </div>
 
 

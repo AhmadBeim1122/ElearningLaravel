@@ -19,7 +19,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::all();
+        $admins = Admin::paginate(7);
         return view('admin.Admin.All',compact('admins'));
     }
 
@@ -148,13 +148,13 @@ class AdminController extends Controller
     }
     
     public function viewstudent(){
-        $users = User::where('role','student')->get();
+        $users = User::where('role','student')->paginate(7);
         $role = 'student'; 
         return view('admin.User.user',compact('users','role'));
     }
     
     public function viewInstructor(){
-        $users = User::where('role','teacher')->get();
+        $users = User::where('role','teacher')->paginate(7);
         $role = 'teacher'; 
         return view('admin.User.user',compact('users','role'));
 
@@ -282,7 +282,7 @@ class AdminController extends Controller
             ->whereHas('user', function($q){
                 $q->where('role', 'student');
             })
-            ->get();
+            ->paginate(10);
 
         return view('admin.feedback', compact('feedback'));
 
@@ -298,7 +298,7 @@ class AdminController extends Controller
             ->whereHas('user', function($q){
                 $q->where('role', 'teacher');
             })
-            ->get();
+            ->paginate(10);
 
         return view('admin.feedback', compact('feedback'));
 
@@ -337,7 +337,7 @@ class AdminController extends Controller
 
     public function viewAllEnroll(){
         $courses = Course::withCount('enroll')
-            ->get();
+            ->paginate(10);
 
         // return $courses;
         
@@ -349,7 +349,7 @@ class AdminController extends Controller
     public function manageAllstudent(string $id){
         $enroll = Enroll::where('course_id',$id)
         ->with(['user','course'])
-        ->get();
+        ->paginate(10);
 
 
         $quizresult = QuizResult::where('course_id',$id)->get();

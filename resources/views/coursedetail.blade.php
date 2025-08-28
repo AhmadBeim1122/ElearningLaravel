@@ -84,11 +84,11 @@
           <section class="section-card p-4 p-md-4 mb-4">
             <h2 class="section-title">What you will learn</h2>
             <ul class="what-list list-unstyled mb-0">
-              <li><i class="bi bi-check2-circle"></i>Understand how HTML works and its role in web development</li>
-              <li><i class="bi bi-check2-circle"></i>Create and structure a basic HTML webpage from scratch</li>
-              <li><i class="bi bi-check2-circle"></i>Use essential HTML tags for headings, text, links, images, and more</li>
-              <li><i class="bi bi-check2-circle"></i>Build forms with inputs, labels, select boxes and validation basics</li>
-              <li><i class="bi bi-check2-circle"></i>Lay a solid foundation for learning CSS &amp; JavaScript</li>
+              <li><i class="bi bi-check2-circle"></i>Grasp the fundamental concepts used in this field</li>
+              <li><i class="bi bi-check2-circle"></i>Build practical projects and apply your knowledge</li>
+              <li><i class="bi bi-check2-circle"></i>Develop problem-solving and critical thinking skills</li>
+              <li><i class="bi bi-check2-circle"></i>Work with essential tools and techniques effectively</li>
+              <li><i class="bi bi-check2-circle"></i>Gain a strong foundation for advanced learning and career growth</li>
             </ul>
           </section>
 
@@ -136,7 +136,8 @@
           <section class="section-card p-4 p-md-4 mb-4">
             <h2 class="section-title">Instructor</h2>
             <div class="d-flex align-items-center gap-3">
-              <img src="{{ asset("upload/Users/profilePhoto/".$course->user->profile_image) }}" alt="Instructor" class="rounded-circle shadow-soft" width="64" height="64">
+              <img src="{{ asset("upload/Users/profilePhoto/".$course->user->profile_image) }}" alt="Instructor" class="rounded-circle shadow-soft" width="64" height="64"
+               style="object-fit: cover;">
               <div>
                 <div class="fw-semibold">{{ $course->user->name }}</div>
                 <div class="muted small">{{ $course->user->qualification }}</div>
