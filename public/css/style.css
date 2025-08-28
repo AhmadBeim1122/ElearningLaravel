@@ -1,0 +1,370 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+/* .hsize{
+    border: 2px solid saddlebrown;
+    font-weight: 600;
+    width: 140px;
+    text-align: center;
+}
+.hsize a{
+    width: 100%;
+    font-size: 100%;
+} */
+
+.navbar{
+    background-color: #225470;
+}
+.navbar-brand{
+    font-family: "Ubuntu" ;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    
+}
+
+.custom-nav .custom-nav-item a{
+    color: white !important;
+}
+.custom-nav-item:hover{
+    background-color: #dc3545;
+    border:1px solid #dc3545;
+    border-radius:7px ;
+}
+
+.vid-parent {
+    position: relative;
+    height: 100vh; /* Full screen height */
+    overflow: hidden;
+}
+.remove-vid-marg{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.vid-parent video{
+    margin: 0px;
+    width:100%;
+    height: 100%;
+    object-fit: cover; /* Ensures it fills the box without stretching */
+}
+
+.vid-overlay{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #225470;
+    z-index: 1;
+    opacity: 0.8;
+}
+.vid-content{
+    position: absolute;
+    z-index: 2;
+    top: 35%;
+    left: 35%;
+    text-align: center;
+    color: white;
+}
+.vid-content h1.my-content{
+    overflow: hidden;
+    /* keeps on a single line */
+    white-space: nowrap;
+    /* the cursor */
+    /* border-right: 1px solid; */
+   
+    animation: typing 7s steps(22) forwards alternate,
+    blink 2s step-end infinite;
+    animation-iteration-count: infinite;  
+   
+}
+ .vid-content small.my-content{
+    display: inline-block; 
+    overflow: hidden;
+    /* keeps on a single line */
+     white-space: nowrap; 
+    /* the cursor */
+    /* border-right: 1px solid; */
+   
+    animation: typing 7s steps(19) forwards alternate,
+    blink 2s step-end infinite;
+    animation-iteration-count: infinite;  
+   
+} 
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+@keyframes blink {
+    50%{
+        border-color: transparent;
+    }
+}
+
+
+
+.btn{
+    margin-top: 5px;
+}
+.bottom-banner{
+    color: white;
+    padding: 5px;
+}
+
+.Stripe{
+    background-image: linear-gradient(240deg, #ed213a , #93291e);
+    padding: 3rem;
+    height: 13rem;
+    margin-top: 4rem;
+    transform: rotate(10deg);
+    z-index: -5;
+}
+
+
+a.social-hover:hover{
+    padding: 5px 100px;
+    text-decoration: none;
+    background-color: rgb(95, 93, 93);
+}
+
+/* .navbar{
+    transition: all 0.4s;
+    
+}
+.navbar-scroll{
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
+    background-color: #225470;
+    height: 70px;
+    
+} */
+
+
+
+
+/* signup page */
+
+.signup-card {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.signup-card h3 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+
+@media screen and (min-width: 0px ) and (max-width:700px) {
+    .my-content, 
+    .txt-banner{
+        display: none;
+    }
+    .vid-content{
+        top:12%;
+        left:60%;
+    }
+
+    .custom-nav .custom-nav-item a{
+       padding: 10px 20px;
+       background-color: #225470; 
+    }
+    /* .custom-nav-item:hover {
+        background-color: none;
+        border: none;
+        border-radius: none;
+    } */
+}
+
+
+
+
+
+#statusloginmsg small {
+    font-size: 13px;
+}
+
+
+.t-card{
+
+  border-radius: .7rem;
+}
+
+
+/* Story Section Layout */
+.story-container {
+    margin-top: 7%;
+    margin-bottom: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: 4rem 0;
+    flex-wrap: wrap;
+    flex-direction: row-reverse; /* reverse order */
+}
+
+/* Story Section Layout=1 */
+.story-container-1 {
+    margin-top: 7%;
+    margin-bottom: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: 4rem 0;
+    flex-wrap: wrap;
+    flex-direction: row; /* reverse order */
+}
+
+/* Image Section */
+.story-images {
+    position: relative;
+    flex: 1 1 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.story-img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    position: relative;
+}
+
+/* Decorative Shape */
+.story-square {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #b1c9d7, #225470);
+    border-radius: 20px;
+    top: -30px;
+    left: -30px;
+    z-index: 1;
+    transform: rotate(-8deg);
+}
+
+/* Text Section */
+.story-data {
+    flex: 1 1 45%;
+}
+
+.story-section-title {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #ff6bb5;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.story-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.story-description {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Button */
+.button.btn-small {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #ff8ad4, #ff6bb5);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.button.btn-small:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 5px 15px rgba(255, 107, 181, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .story-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .story-square {
+        display: none; /* Mobile me shape hide */
+    }
+}
+
+
+
+
+/* Courses Link Style  */
+.see-more-link {
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: all 0.2s ease-in-out;
+}
+.see-more-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+ /* Pagination ka size badhane ke liye */
+    .pagination {
+        font-size: 1.2rem;
+    }
+
+    /* Active page ko highlight karna */
+    .pagination .page-item.active .page-link {
+        background-color: #343a40; /* Dark theme color */
+        border-color: #343a40;
+        color: #fff;
+    }
+
+    /* Hover effect */
+    .pagination .page-link:hover {
+        background-color: #495057;
+        color: #fff;
+    }
+
+    /* Page link ka size aur padding */
+    .pagination .page-link {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    margin: 0 4px;
+    }
+
+
+
+
+
+
+    

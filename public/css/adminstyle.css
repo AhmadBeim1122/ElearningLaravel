@@ -1,0 +1,100 @@
+.navbar-brand{
+    font-family: "Ubuntu" ,sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+}
+/* Adding New Users for Bottom Right */
+
+.box{
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    margin-bottom: 30px;
+
+}
+
+body, html {
+      height: 100%;
+      margin: 0;
+      background-color: #f8f9fa;
+    }
+
+
+.login-container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 500px;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-box h4 {
+      margin-bottom: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .login-box .form-group i {
+      width: 20px;
+    }
+
+
+
+
+     .sidebar .nav-link {
+        background-color: rgba(0, 0, 0, 0.05); /* Light black overlay */
+        /* color: #000; */
+        border-radius: 5px;
+        margin: 1px 0;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background-color: #ffffff !important; /* White background */
+    font-weight: bold;
+    border-radius: 5px;
+     box-shadow: inset 3px 0 0 #225470;
+}
+
+    /* .vertical-divider {
+        border-left: 2px solid #ccc;
+        height: 100vh;
+        position: absolute;
+        left: 250px;
+        top: 56px; /* height of navbar */
+        /* z-index: 1; */
+    /* }  */
+    
+
+
+/* 🟢 Alert placed before the main content starts */
+    .toast-message {
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #1894ed;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+                z-index: 9999;
+                opacity: 1;
+                transition: all 0.5s ease-in-out;
+                font-weight: bold;
+            }
+
+            .toast-message.hide {
+                opacity: 0;
+                bottom: 0px;
+            }
