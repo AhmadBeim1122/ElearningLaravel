@@ -8,7 +8,7 @@
 <div class="col-sm-9 mt-2 justify-content-center mx-5 jumbotron">
     <h3 class="text-center">Add New Lesson</h3>
 
-    <form action="{{ route('lesson.store') }}" method="post" enctype="multipart/form-data" class="dropzone" id="myDropzone">
+    <form action="{{ route('lesson.store') }}" method="post" enctype="multipart/form-data" class="lessonForm" id="lessonForm">
         @csrf
         <div class="form-group">
             <label for="course_id">Course ID : </label>
@@ -60,11 +60,10 @@
             </small>
    
             <input type="file" 
-           class="filepond" 
+           class="form-control"
            name="lesson_link" 
            id="lesson_link" 
            accept="video/*" />
-        </div>
         
         
         
@@ -125,6 +124,15 @@
                 <option value="option_4">Option 4</option>
             </select>
         </div>
+</div>
+        <!-- Progress Bar -->
+{{-- <div class="progress mt-3" style="height: 25px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" 
+       role="progressbar" style="width: 0%">0%</div>
+</div> --}}
+
+<!-- Success Message -->
+{{-- <div id="message" class="mt-3"></div> --}}
 
         <input type="hidden" name="role" value="teacher">
         <input type="hidden" name="ins_id" value="{{ Auth::user()->id }}">
@@ -134,6 +142,8 @@
             <a href="{{ route('lesson.index') }}" class="btn btn-primary">Close</a>
         </div>
     </form>
+
+    
 </div>
     
 
@@ -142,20 +152,51 @@
 
 
 
-@section('scripts')
-
+{{-- @section('scripts')
 
 <script>
-    // Plugins enable
-    FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginFileValidateSize);
-    
-    // Create FilePond instance
-    const pond = FilePond.create(document.querySelector('#lesson_link'), {
-        instantUpload: false,  // 🚨 ye important hai
-        storeAsFile: true,     // 🚨 file ko form ke saath bhejega
-        acceptedFileTypes: ['video/mp4', 'video/mkv', 'video/avi', 'video/mov'],
-        maxFileSize: '1000MB',
+document.getElementById('lessonForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    let form = document.getElementById('lessonForm');
+    let formData = new FormData(form);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', form.action, true);
+
+    // Laravel CSRF Token
+    xhr.setRequestHeader("X-CSRF-TOKEN", "{{ csrf_token() }}");
+
+    // Progress event
+    xhr.upload.addEventListener("progress", function(e) {
+        if (e.lengthComputable) {
+            let percent = Math.round((e.loaded / e.total) * 100);
+            let progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = percent + "%";
+            progressBar.textContent = percent + "%";
+        }
     });
+
+    // On complete
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('message').innerHTML =
+                `<div class="alert alert-success">Lesson uploaded successfully!</div>`;
+            
+            // reset form
+            form.reset();
+            document.querySelector('.progress-bar').style.width = "0%";
+            document.querySelector('.progress-bar').textContent = "0%";
+        } else {
+            document.getElementById('message').innerHTML =
+                `<div class="alert alert-danger">Upload failed!</div>`;
+        }
+    };
+
+    xhr.send(formData);
+});
 </script>
 
-@endsection
+
+
+@endsection --}}

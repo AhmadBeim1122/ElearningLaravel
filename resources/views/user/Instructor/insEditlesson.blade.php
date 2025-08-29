@@ -18,13 +18,13 @@
 
         <div class="form-group">
             <label for="course_id">Course ID</label>
-            <input type="text" class="form-control" id="course_id" name="course_id" value="{{ session('id') }}" readonly>
+            <input type="text" class="form-control" id="course_id" name="course_id" value="{{ $lesson->course->id }}" readonly>
         </div>
 
 
         <div class="form-group">
             <label for="course_name">Course Name</label>
-            <input type="text" class="form-control" id="course_name" name="course_name" value="{{ session('name') }}" readonly>
+            <input type="text" class="form-control" id="course_name" name="course_name" value="{{ $lesson->course->id }}" readonly>
         </div>
 
 
@@ -49,13 +49,13 @@
 
         
 
-        <div class="form-group">
+         <div class="form-group">
             <label for="lesson_link">Lesson Video</label><small class="text-danger">
                 @error('lesson_link')
                 {{ $message }}
                 @enderror
             </small>
-            <br><br>
+            <br><br> 
             <div class="embedded-responsive embedded-responsive-16by9">
                 
                 {{-- <iframe class="embedded-responsive-item" id="output" src="{{ asset('upload/courses/lessonVideo/' . $lesson->lesson_link)}}" ></iframe>
@@ -134,10 +134,17 @@
         <input type="hidden" name="role" value="teacher">
         <input type="hidden" name="ins_id" value="{{ Auth::user()->id }}">
 
-        
+                <!-- Progress Bar -->
+{{-- <div class="progress mt-3" style="height: 25px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" 
+       role="progressbar" style="width: 0%">0%</div>
+</div> --}}
+
+<!-- Success Message -->
+{{-- <div id="message" class="mt-3"></div> --}}
 
         <div class="text-center">
-            <button type="submit" class="btn btn-danger" name="requpdate" id="requpdate">Update</button>
+            <button type="submit" class="btn btn-danger">Update</button>
             <a href="{{ route('InsCourse.edit',session('id')) }}" class="btn btn-primary">Close</a>
         </div>
 
@@ -145,3 +152,55 @@
 </div>
 
 @endsection
+
+
+
+{{-- 
+@section('scripts')
+
+<script>
+document.getElementById('lessonForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    let form = document.getElementById('lessonForm');
+    let formData = new FormData(form);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', form.action, true);
+
+    // Laravel CSRF Token
+    xhr.setRequestHeader("X-CSRF-TOKEN", "{{ csrf_token() }}");
+
+    // Progress event
+    xhr.upload.addEventListener("progress", function(e) {
+        if (e.lengthComputable) {
+            let percent = Math.round((e.loaded / e.total) * 100);
+            let progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = percent + "%";
+            progressBar.textContent = percent + "%";
+        }
+    });
+
+    // On complete
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('message').innerHTML =
+                `<div class="alert alert-success">Lesson Update successfully!</div>`;
+            
+            // reset form
+            form.reset();
+            document.querySelector('.progress-bar').style.width = "0%";
+            document.querySelector('.progress-bar').textContent = "0%";
+        } else {
+            document.getElementById('message').innerHTML =
+                `<div class="alert alert-danger">Upload failed!</div>`;
+        }
+    };
+
+    xhr.send(formData);
+});
+</script>
+
+
+
+@endsection --}}

@@ -43,12 +43,13 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
          $validatelesson = Validator::make(
             $request->all(),
             [
                 'lesson_name' => 'required',
                 'lesson_desc' => 'required|max:500',
-                'lesson_link' => 'required|mimes:mp4,mov,ogg',
+                'lesson_link' => 'required|mimes:mp4,mov,ogg|max:102400',
                 'question'    => 'required',
                 'option_1'    => 'required',
                 'option_2'    => 'required',
@@ -132,6 +133,7 @@ class LessonController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // return $request;
          $validatelesson = Validator::make(
             $request->all(),
             [
@@ -157,7 +159,8 @@ class LessonController extends Controller
 
         $lesson = Lesson::findOrFail($id);
 
-        if($request->lesson_link != ''){
+        if($request->hasFile('lesson_link')){
+            
             $path = public_path(). '/upload/courses/lessonVideo/';
             if($lesson->lesson_link != '' && $lesson->lesson_link != NULL){
                 $old_path = $path . $lesson->lesson_link;
@@ -166,25 +169,27 @@ class LessonController extends Controller
                 }
             }
 
-            $video = $request->lesson_link;
+            $video = $request->file('lesson_link');
             $ext = $video->getClientOriginalExtension();
             $lesson_link = time(). '.' . $ext;
-            $video->move(public_path() . '/upload/courses/lessonVideo/',$lesson_link);
+            $video->move(public_path() . '/upload/courses/lessonVideo/', $lesson_link);
         }else{
             $lesson_link = $lesson->lesson_link;
         }
+        // echo $lesson_link;
+        
 
-        $lesson = Lesson::where(['id' => $id])->update([
-                'lesson_name' => $request->lesson_name,
-                'lesson_description' => $request->lesson_desc,
-                'lesson_link' => $lesson_link,
-                'course_id' => $request->course_id,
-        ]);
+        $lesson->lesson_name = $request->lesson_name;
+        $lesson->lesson_description = $request->lesson_desc;
+        $lesson->lesson_link = $lesson_link;
+        $lesson->course_id = $request->course_id;
 
+        $lesson->save(); 
 
-          $correctKey = $request->correct_answer; // option_1, option_2, ...
+        $correctKey = $request->correct_answer; // option_1, option_2, ...
         $correctAnswer = $request->$correctKey;
-
+        
+        
         $quiz = Quizz::where(['lesson_id' => $id])->update([
             'question'    => $request->question,
             'option_1'    => $request->option_1,
@@ -194,19 +199,41 @@ class LessonController extends Controller
             'correct_answer'    => $correctAnswer,
             'lesson_id'   => $request->lesson_id
         ]);
+        
+        // if($quiz){
+        //     return $request->course_id;
+        // }
 
-       if ($lesson && $quiz && $request->role == 'admin') {
-        return view('successmsg')->with([
-                'msg' => 'Lesson Update Successfully',
-                'route' => 'lesson.index',
-                'course_id' => $request->course_id,
-            ]);
-        } elseif($lesson && $quiz && $request->role == 'teacher') {
-            return redirect()->route('InsCourse.edit',$request->ins_id)->with([
-                'success' => 'Lesson Updated Successfully',
-    
-            ]);
+        if($lesson && $quiz){
+            
+            if($request->role == 'admin'){
+                return view('successmsg')->with([
+                    'msg' => 'Lesson Update Successfully',
+                    'route' => 'lesson.index',
+                    'course_id' => $request->course_id,
+                ]);
+            }elseif($request->role == 'teacher'){
+                return redirect()->route('InsCourse.edit', $request->course_id)
+                    ->with('success', 'Lesson Updated Successfully');
+            }
         }
+
+
+
+
+    //    if ($lesson && $quiz && $request->role == 'admin') {
+    //     return view('successmsg')->with([
+    //             'msg' => 'Lesson Update Successfully',
+    //             'route' => 'lesson.index',
+    //             'course_id' => $request->course_id,
+    //         ]);
+    //     } elseif($lesson && $quiz && $request->role == 'teacher') {
+            
+    //         return redirect()->route('InsCourse.edit',$request->course_id)->with([
+    //             'success' => 'Lesson Updated Successfully',
+    
+    //         ]);
+    //     }
         
     }
 

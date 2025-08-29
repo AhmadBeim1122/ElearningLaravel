@@ -6,7 +6,8 @@
 <div class="col-sm-6 mt-5 mx-3 jumbotron">
     <h3 class="text-center">Add New Lesson</h3>
 
-    <form action="{{ route('lesson.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('lesson.store') }}" method="post" enctype="multipart/form-data"
+    class="lessonForm" id="lessonForm">
         @csrf
         <div class="form-group">
             <label for="course_id">Course ID : </label>
@@ -109,7 +110,14 @@
 
         <input type="hidden" name="role" value="admin">
         
-        
+               <!-- Progress Bar -->
+{{-- <div class="progress mt-3" style="height: 25px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" 
+       role="progressbar" style="width: 0%">0%</div>
+</div> --}}
+
+<!-- Success Message -->
+{{-- <div id="message" class="mt-3"></div> --}}
         
         <div class="text-center">
             <button type="submit" class="btn btn-danger" name="lessonSubmitBtn">Submit</button>
@@ -121,3 +129,54 @@
 
     
 @endsection
+
+
+
+{{-- @section('scripts')
+
+<script>
+document.getElementById('lessonForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    let form = document.getElementById('lessonForm');
+    let formData = new FormData(form);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', form.action, true);
+
+    // Laravel CSRF Token
+    xhr.setRequestHeader("X-CSRF-TOKEN", "{{ csrf_token() }}");
+
+    // Progress event
+    xhr.upload.addEventListener("progress", function(e) {
+        if (e.lengthComputable) {
+            let percent = Math.round((e.loaded / e.total) * 100);
+            let progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = percent + "%";
+            progressBar.textContent = percent + "%";
+        }
+    });
+
+    // On complete
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('message').innerHTML =
+                `<div class="alert alert-success">Lesson uploaded successfully!</div>`;
+            
+            // reset form
+            form.reset();
+            document.querySelector('.progress-bar').style.width = "0%";
+            document.querySelector('.progress-bar').textContent = "0%";
+        } else {
+            document.getElementById('message').innerHTML =
+                `<div class="alert alert-danger">Upload failed!</div>`;
+        }
+    };
+
+    xhr.send(formData);
+});
+</script>
+
+
+
+@endsection --}}
